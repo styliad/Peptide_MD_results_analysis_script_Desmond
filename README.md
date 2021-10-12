@@ -1,6 +1,6 @@
 # Peptide Molecular Dynamics Simulation Results Analysis Script (Desmond)
 
-The present script can be used to assist in results analysis for MD Simulation of a peptide, run in Desmond. 
+The present script can be used to assist in results analysis for MD simulations studies on peptides, run in Desmond. 
 
 ![Percentage of secondary structure per aminoacid](https://raw.githubusercontent.com/styliad/Peptide_MD_results_analysis_script_Desmond/master/images/Plot1.png?token=AH274VXNBCWFPBOGRL3WO6DARLCEW)
 ![Intrapeptide interactions Network Plot](https://raw.githubusercontent.com/styliad/Peptide_MD_results_analysis_script_Desmond/master/images/Plot2.png?token=AH274VQ26RBS2RQALDIM6Z3ARLCFM)
