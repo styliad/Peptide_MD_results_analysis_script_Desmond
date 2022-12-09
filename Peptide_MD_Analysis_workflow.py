@@ -269,15 +269,12 @@ filtered_contact_results = pd.read_csv('filtered_peptide_result.tsv', delimiter 
 contact_results.replace(replacements, regex=True, inplace=True)
 
 # Make data suitable for plotting
-contact_results['Residue_1'] =contact_results['Atom_1'].str[2:]
-contact_results['Residue_2'] =contact_results['Atom_2'].str[2:]
-contact_results['Atom_1'] = contact_results['Atom_1'].str[2:]
-contact_results['Atom_2'] = contact_results['Atom_2'].str[2:]
-contact_results['Residue_1'] =contact_results['Residue_1'].str.extract('([^:]*:[^:]*)')
-contact_results['Residue_1'] =contact_results['Residue_1'].str.replace('[:]', '') 
-contact_results['Residues'] =contact_results['Residue_1'].str[:3]
-contact_results['Residue_2'] =contact_results['Residue_2'].str.extract('([^:]*:[^:]*)')
-contact_results['Residue_2'] =contact_results['Residue_2'].str.replace('[:]', '') 
+contact_results['Residue_1_name'] = contact_results['Atom_1'].str.extract('[^:]*:(.*):(.*):[^:]*')[0]
+contact_results['Residue_1_num'] = contact_results['Atom_1'].str.extract('[^:]*:(.*):(.*):[^:]*')[1]
+contact_results['Residue_1'] = contact_results['Residue_1_name'] + contact_results['Residue_1_num']
+contact_results['Residue_2_name'] = contact_results['Atom_2'].str.extract('[^:]*:(.*):(.*):[^:]*')[0]
+contact_results['Residue_2_num'] = contact_results['Atom_2'].str.extract('[^:]*:(.*):(.*):[^:]*')[1]
+contact_results['Residue_2'] = contact_results['Residue_2_name'] + contact_results['Residue_2_num']
 contact_results['residues_pairs'] = [i for i in zip(contact_results['Residue_1'],contact_results['Residue_2'])]
 interacting_residues = contact_results.Residue_1.unique()
 contact_results['Color'] =  contact_results['Interaction_type'].map(bond_colors)
@@ -287,15 +284,12 @@ contact_results['Color'] =  contact_results['Interaction_type'].map(bond_colors)
 filtered_contact_results.replace(replacements, regex=True, inplace=True)
 
 # Make data suitable for plotting
-filtered_contact_results['Residue_1'] =filtered_contact_results['Atom_1'].str[2:]
-filtered_contact_results['Residue_2'] =filtered_contact_results['Atom_2'].str[2:]
-filtered_contact_results['Atom_1'] = filtered_contact_results['Atom_1'].str[2:]
-filtered_contact_results['Atom_2'] = filtered_contact_results['Atom_2'].str[2:]
-filtered_contact_results['Residue_1'] =filtered_contact_results['Residue_1'].str.extract('([^:]*:[^:]*)')
-filtered_contact_results['Residue_1'] =filtered_contact_results['Residue_1'].str.replace('[:]', '') 
-filtered_contact_results['Residues'] =filtered_contact_results['Residue_1'].str[:3]
-filtered_contact_results['Residue_2'] =filtered_contact_results['Residue_2'].str.extract('([^:]*:[^:]*)')
-filtered_contact_results['Residue_2'] =filtered_contact_results['Residue_2'].str.replace('[:]', '') 
+filtered_contact_results['Residue_1_name'] = filtered_contact_results['Atom_1'].str.extract('[^:]*:(.*):(.*):[^:]*')[0]
+filtered_contact_results['Residue_1_num'] = filtered_contact_results['Atom_1'].str.extract('[^:]*:(.*):(.*):[^:]*')[1]
+filtered_contact_results['Residue_1'] = filtered_contact_results['Residue_1_name'] + filtered_contact_results['Residue_1_num']
+filtered_contact_results['Residue_2_name'] = filtered_contact_results['Atom_2'].str.extract('[^:]*:(.*):(.*):[^:]*')[0]
+filtered_contact_results['Residue_2_num'] = filtered_contact_results['Atom_2'].str.extract('[^:]*:(.*):(.*):[^:]*')[1]
+filtered_contact_results['Residue_2'] = filtered_contact_results['Residue_2_name'] + filtered_contact_results['Residue_2_num']
 filtered_contact_results['residues_pairs'] = [i for i in zip(filtered_contact_results['Residue_1'],filtered_contact_results['Residue_2'])]
 interacting_residues = filtered_contact_results.Residue_1.unique()
 filtered_contact_results['Color'] =  filtered_contact_results['Interaction_type'].map(bond_colors)
